@@ -10,6 +10,8 @@ services:
       - db
     networks:
       - nodenet
+    #volumes:
+    #  - .:/home/node/app
     
   nginx:
     build: 
