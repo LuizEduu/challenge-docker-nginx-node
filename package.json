@@ -1,8 +1,8 @@
 {
-  "name": "nodejs",
+  "name": "nginx_with_nodejs",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "start": "node src/server.js"
   },

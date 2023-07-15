@@ -6,14 +6,11 @@ services:
       context: .
       dockerfile: dockerfile.node
     container_name: app
-    entrypoint: wait-for db:3306 -t 40 -- npm start
     depends_on:
       - db
     networks:
       - nodenet
-    volumes:
-      - .:/usr/app
-
+    
   nginx:
     build: 
       context: .
