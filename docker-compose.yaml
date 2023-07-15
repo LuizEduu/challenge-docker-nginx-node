@@ -11,7 +11,7 @@ services:
     networks:
       - nodenet
     #volumes:
-    #  - .:/home/node/app
+    #- .:/home/node/app
     
   nginx:
     build: 
