@@ -11,10 +11,5 @@ WORKDIR /home/node/app
 
 COPY package*.json .
 
-RUN npm install
-
-COPY . .
 
 EXPOSE 3000
-
-ENTRYPOINT [ "wait-for", "db:3306", "-t 40", "--", "npm", "run", "start" ]
