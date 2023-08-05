@@ -10,26 +10,32 @@ const server = http.createServer(async (req, res) => {
     database: "nodedb",
   };
 
-  const connection = await mysql.createConnection(config);
 
-  await connection.query("CREATE TABLE IF NOT EXISTS users (name VARCHAR(255))");
+  if (req.method === "GET" && req.url === "/") {
+    console.log("executed request")
+    const connection = await mysql.createConnection(config);
 
-  const sql = `INSERT INTO users(name) VALUES('John Doe')`;
-  connection.query(sql);
+    await connection.query(
+      "CREATE TABLE IF NOT EXISTS users (name VARCHAR(255))"
+    );
 
-  const [rows, _] = await connection.execute("SELECT * FROM users");
+    connection.query(`INSERT INTO users(name) VALUES('John Doe')`);
 
-  connection.end();
+    const [rows, _] = await connection.execute("SELECT * FROM users");
 
-  const users = rows.map(user => `<li>${user.name}</li>`)
-  
+    connection.end();
 
-  res.end(`<h1>Full Cycle Rocks!</h1>
+    const users = rows.map((user) => `<li>${user.name}</li>`);
+
+    res.end(`<h1>Full Cycle Rocks!</h1>
   </br>
   <ul>
     ${users}
   </ul>
   `);
+  } 
 });
 
-server.listen(3000, '0.0.0.0', () => console.log("Server running on port 3000"));
+server.listen(3000, "0.0.0.0", () =>
+  console.log("Server running on port 3000")
+);
